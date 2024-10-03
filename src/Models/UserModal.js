@@ -34,6 +34,10 @@ const UserSchema = mongoose.Schema({
     type: String,
     enum: ["user", "listner", "admin"],
   },
+  listnerType: {
+    type: String,
+    enum: ["therepist", "phycologist"],
+  },
   is_new: {
     type: Boolean,
     default: true,

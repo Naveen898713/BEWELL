@@ -1,4 +1,5 @@
-const { createLisnter } = require("../Controllers/ListenerController");
+const { createLisnter } = require("../Controllers/AdminController");
+const { findListners } = require("../Controllers/ListenerController");
 const {
   LoginWithNumber,
   verifyOTP,
@@ -8,8 +9,12 @@ const {
 module.exports = (app) => {
   const err = (fn) => (req, res, next) =>
     Promise.resolve(fn(req, res, next)).catch(next);
-  app.post("/login", LoginWithNumber);
-  app.post("/verify", verifyOTP);
-  app.post("/resent_otp", resendOTP);
-  app.post("/create-listner", createLisnter);
+  app.post("/login", err(LoginWithNumber));
+  app.post("/verify", err(verifyOTP));
+  app.post("/resent_otp", err(resendOTP));
+  app.post("/create-listner", err(createLisnter));
+  app.get("/getlistner", auth, err(findListners));
+  // listner
+
+  app.post("/lisnter/login", err(loginListner));
 };
