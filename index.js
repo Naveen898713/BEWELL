@@ -27,6 +27,7 @@ app.use((err, req, res, next) => {
 
 // Routes
 require("./src/Routes/User")(app);
+require("./src/Routes/AdminRoutes")(app);
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
   console.log("server is running on ", PORT);

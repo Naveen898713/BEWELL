@@ -7,7 +7,7 @@ const verifyToken = async (req, res, next) => {
     return res.status(401).send({status:false,message:"A token is required for authentication"});
   }
   try {
-    const decoded = await jwt.verify(authorization, process.env.TOKEN_KEY);
+    const decoded = await jwt.verify(authorization, process.env.SECKEY);
     const user = await User.findOne({ _id: decoded.user });
     if (!user) {
       return res.status(401).send("User not found 2");

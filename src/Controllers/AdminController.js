@@ -1,5 +1,5 @@
 const UserSchema = require("../Models/UserModal");
-const { resStatus, resStatusToken } = require("../Responses/Response");
+const { resStatus, resStatusToken, resStatusData } = require("../Responses/Response");
 const bcrpyt = require("bcrypt");
 const { generateToken } = require("../Services/commonfunction");
 module.exports.createAdmin = async (req, res) => {
@@ -19,7 +19,9 @@ module.exports.createAdmin = async (req, res) => {
       password,
       firstName,
       lastName,
+      userType: "admin",
     });
+    console.log("ww");
     await user
       .save()
       .then(() => {
@@ -47,7 +49,7 @@ module.exports.adminLogin = async (req, res) => {
         resStatus(res, false, "invaild credentials");
       }
     } else {
-      resStatus(res, false, "invaild credentials");
+      resStatus(res, false, "invaild credentials hi");
     }
   } else {
     resStatus(res, false, "email and password required ");

@@ -9,7 +9,7 @@ const { generateToken } = require("../Services/commonfunction");
 module.exports.loginListner = async (req, res) => {
   const { number, password } = req.body;
   if (number && password) {
-    const user = await UserSchema.findOne(email);
+    const user = await UserSchema.findOne({number});
     if (user) {
       const isMatch = await bcryt.compare(password, user.password);
       if (isMatch) {

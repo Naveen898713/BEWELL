@@ -9,6 +9,7 @@ const {
   resStatus,
   resStatusDataToken,
   resStatusToken,
+  resStatusData,
 } = require("../Responses/Response");
 const {
   sendOtpOnNumber,
@@ -127,6 +128,14 @@ module.exports.resendOTP = async (req, res) => {
   }
 };
 
-module.exports.Logout = async (req, res) => {
-    
+module.exports.finduser = async (req, res) => {
+  const user = req.user;
+  if (user) {
+    resStatusData(res, true, "user found", user);
+    console.log('hii')
+  } else {
+    resStatus(res, false, "user not found");
+  }
 };
+
+module.exports.Logout = async (req, res) => {};
